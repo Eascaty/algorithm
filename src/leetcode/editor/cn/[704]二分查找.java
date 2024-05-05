@@ -29,20 +29,25 @@ package leetcode.editor.cn;//给定一个 n 个元素有序的（升序）整型
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+class Solution704 {
     public int search(int[] nums, int target) {
-        int left = 0, right = nums.length - 1;
-        while(left<=right) {
-            int mid = left + (right - left) / 2;
-            if(nums[mid] == target) {
-                return mid;
-            } else if(nums[mid] > target) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
+        // 避免当 target 小于nums[0] nums[nums.length - 1]时多次循环运算
+        if (target < nums[0] || target > nums[nums.length - 1]) {
+            return -1;
+        }
+        int left =0;  int right = nums.length-1;
+        while(left <= right){
+            int middle = left + (right-left)/2;
+
+            if(nums[middle] == target)
+                return middle;
+            if(nums[middle] >= target ){
+                right = middle -1;
+            } else  {
+                left = middle+ 1 ;
             }
         }
-        return -1;
+        return  -1;
     }
 }
 
