@@ -93,39 +93,6 @@ class Solution34 {
 
 
 
-//    正确方法1
-//方法一
-//先找到一个mid，然后移动下标找范围，这种条件下时间复杂度在类似[1,1,1,1] target = 1的case中会退化为O(N)
-class Solution {
-    public int[] searchRange(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length - 1;
-        int[] result = new int[] {-1,-1};
-        while(left <= right){
-            int mid = (left + right) / 2;
-            if(nums[mid] < target) {
-                left = mid + 1;
-            } else if(nums[mid] > target) {
-                right = mid -1;
-            } else if(nums[mid] == target) {
-                result[0] = mid;
-                int i = mid;
-                while(i-1 >= 0 && nums[i-1] == target) {
-                    i--;
-                }
-                result[0] = i;
-                int j=mid;
-                while(j+1 <= nums.length-1 && nums[j+1] == target){
-                    j++;
-                }
-                result[1] = j;
-                return result;
-            }
-        }
-        return result;
-    }
-}
-
 
     /*//方法一
 //先找到一个mid，然后移动下标找范围，这种条件下时间复杂度在类似[1,1,1,1] target = 1的case中会退化为O(N)
